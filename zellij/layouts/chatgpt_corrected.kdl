@@ -1,0 +1,64 @@
+layout {
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+
+    tab name="Main Work Area" {
+        pane split_direction="vertical" {
+            pane size="60%" {
+                // Main left pane (commands or plugins could be added here)
+            }
+            pane size="40%" split_direction="horizontal" {
+                pane size="50%" {
+                    // Upper right pane (commands or plugins could be added here)
+                }
+                children
+                pane size="50%" {
+                    // Lower right pane (commands or plugins could be added here)
+                }
+            }
+        }
+    }
+    
+    tab name="Grid Layout" {
+        pane split_direction="horizontal" {
+            pane size="50%" split_direction="vertical" {
+                pane size="50%" {
+                    // Top left pane
+                }
+                pane size="50%" {
+                    // Bottom left pane
+                }
+            }
+            pane size="50%" split_direction="vertical" {
+                pane size="50%" {
+                    // Top right pane
+                }
+                pane size="50%" {
+                    // Bottom right pane
+                }
+            }
+        }
+    }
+    
+    tab name="Dual Panes" {
+        pane split_direction="vertical" {
+            pane size="50%" {
+                // Left pane
+            }
+            pane size="50%" {
+                // Right pane
+            }
+        }
+    }
+    
+    tab name="Single Pane" {
+        // Full tab single pane
+    }
+}

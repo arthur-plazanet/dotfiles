@@ -1,0 +1,19 @@
+{
+  "Print to console": {
+    "prefix": "cll",
+    "body": ["console.log('$1');", "$2"],
+    "description": "Log output to console"
+  },
+  "console.group": {
+    "prefix": "!clg",
+    "body": [
+      "console.group(`$0`)",
+      "// Do another logging...",
+      "console.groupEnd()"
+    ]
+  },
+  "console log": {
+    "prefix": "!cl",
+    "body": ["console.log('$1');"]
+  }
+}
