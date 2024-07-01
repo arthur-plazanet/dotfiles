@@ -22,9 +22,9 @@ This script will:
 - Ask for the location of your config files (default: `~/.config`)
 - Ask for the location of the target directory for the symbolic links (default: current directory where you cloned the repo)
 - Create symbolic links for all files inside folders in the current directory to the configuration directory
-- Example: `~/.config/nvim` &rarr; `~/config/.config/nvim`
+    - Example: `~/.config/nvim` &rarr; `~/config/.config/nvim`
 - Create symbolic links for files listed in `HOME_FILES` in the home directory to the target directory (default: current directory)
-- Example: `~/.vimrc` &rarr; `~/config/.vimrc`
+    - Example: `~/.vimrc` &rarr; `~/config/.vimrc`
 
 ## How to sync
 
