@@ -41,6 +41,11 @@ zstyle ':prezto:module:prompt' theme 'pure'
 alias c="cd .."
 alias www="cd /var/www"
 alias ll="ls -la"
+
+# "Using sudo with user dotfiles and aliases"
+# https://medium.com/@alexcg1/using-sudo-with-user-dotfiles-and-aliases-db76813007e
+alias nocorrectsudo='nocorrect sudo -E '
+
 # Libs and utilities
 alias pn="pnpm"
 alias zj="zellij"
