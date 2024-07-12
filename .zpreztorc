@@ -51,7 +51,7 @@ alias pn="pnpm"
 alias zj="zellij"
 alias nv="nvim"
 # Commands to find current Node processes
-alias findnodeports='echo ''lsof -nP -iTCP -sTCP:LISTEN | grep node'' && lsof -nP -iTCP -sTCP:LISTEN | grep node'
+alias findnodeports="echo 'lsof -nP -iTCP -sTCP:LISTEN | grep node' && lsof -nP -iTCP -sTCP:LISTEN | grep node"
 
 # Git aliases
 alias gitshowmestupid="echo 'git clean -fd'"
