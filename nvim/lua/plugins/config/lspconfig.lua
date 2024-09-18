@@ -56,7 +56,9 @@ end
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 local servers = {
-  tsserver = {},
+  -- https://github.com/williamboman/mason-lspconfig.nvim/pull/459
+  -- Renamed 'tsserver' to 'ts_ls'
+  ts_ls = {},
   stylelint_lsp = {},
   cssls = {},
   html = {},
