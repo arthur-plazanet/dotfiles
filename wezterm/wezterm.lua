@@ -35,6 +35,12 @@ config.keys = {
 
   -- paste from the primary selection
   { key = 'V', mods = 'CTRL', action = act.PasteFrom 'PrimarySelection' },
+
+  -- move to next tab
+  { key = '>', mods = 'CTRL|SHIFT', action = act.MoveTabRelative(1) },
+
+  -- move to previous tab
+  { key = '<', mods = 'CTRL', action = act.MoveTabRelative(-1) },
 }
 
 -- Temporary disable default key bindings
