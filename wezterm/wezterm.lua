@@ -27,20 +27,26 @@ config.send_composed_key_when_left_alt_is_pressed = true
 -- https://github.com/wez/wezterm/issues/410#issuecomment-770507001
 config.use_dead_keys = false
 
-config.use_ime=false
+config.use_ime = false
 
 config.keys = {
   -- paste from the clipboard
-  { key = 'v', mods = 'CTRL', action = act.PasteFrom 'Clipboard' },
+  { key = 'v',  mods = 'CTRL',       action = act.PasteFrom 'Clipboard' },
 
   -- paste from the primary selection
-  { key = 'V', mods = 'CTRL', action = act.PasteFrom 'PrimarySelection' },
+  { key = 'V',  mods = 'CTRL',       action = act.PasteFrom 'PrimarySelection' },
 
-  -- move to next tab
-  { key = '>', mods = 'CTRL|SHIFT', action = act.MoveTabRelative(1) },
+  -- move current tab to next tab
+  { key = '°', mods = 'CTRL|SHIFT', action = act.MoveTabRelative(1) },
 
-  -- move to previous tab
-  { key = '<', mods = 'CTRL', action = act.MoveTabRelative(-1) },
+  -- move current tab to previous tab
+  { key = ')', mods = 'CTRL',       action = act.MoveTabRelative(-1) },
+
+  -- switch to next tab
+  { key = '>',  mods = 'CTRL|SHIFT', action = act.ActivateTabRelative(1) },
+
+  -- switch to previous tab
+  { key = '<',  mods = 'CTRL',       action = act.ActivateTabRelative(-1) },
 }
 
 -- Temporary disable default key bindings
