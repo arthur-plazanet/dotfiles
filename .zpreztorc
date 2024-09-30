@@ -50,6 +50,10 @@ alias nocorrectsudo='nocorrect sudo -E '
 alias pn="pnpm"
 alias zj="zellij"
 alias nv="nvim"
+
+# AdonisJS command line framework
+alias nace="node ace"
+
 # Commands to find current Node processes
 alias findnodeports="echo 'lsof -nP -iTCP -sTCP:LISTEN | grep node' && lsof -nP -iTCP -sTCP:LISTEN | grep node"
 
