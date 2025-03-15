@@ -1,7 +1,82 @@
 local keymap = vim.keymap
+local wk = require('which-key')
 
 keymap.set('t', '<Esc>', [[<C-\><C-n>]])
-keymap.set('n', '<leader>dd', ':DiffviewOpen<Enter>')
+
+-- Helpers
+local nmap = function(keys, func, desc)
+  keymap.set('n', keys, func, { desc = desc })
+end
+
+local imap = function(keys, func, desc)
+  if desc then
+    desc = 'LSP: ' .. desc
+  end
+  keymap.set('i', keys, func, { desc = desc })
+end
+
+-- local render = require 'render-markdown'
+
+-- vim.keymap.set('n', '<leader>mr', require('render-markdown').buf_toggle,
+--   { desc = '[render-markdown] Toggle state in current buffer' })
+
+
+------- Git ------------------------------------------------
+
+-- Diffview
+nmap('<leader>dd', function()
+  require('diffview').open({ file_panel = { width = 35 } })
+end, 'Open Diffview')
+
+-- Telescope Git Pickers
+local builtin = require('telescope.builtin')
+nmap('<leader>gs', builtin.git_status, '[G]it [S]tatus')
+nmap('<leader>gst', builtin.git_stash, '[G]it [S]tash')
+
+-- Neogit
+local neogit = require('neogit')
+
+-- open using defaults
+nmap('<leader>gn', neogit.open, '[G]it [N]eogit')
+-- open as a split
+-- vim.keymap.set('n', '<leader>gns', neogit.open_split, { desc = 'Open Neogit in a split' })
+
+-------------------------------------------------------------
+-- Plugins
+
+-- todo-comments.nvim - https://github.com/folke/todo-comments.nvim?tab=readme-ov-file#-usage
+
+wk.add({
+  { "<leader>t",   group = "todo" },
+  { "<leader>tda", "<cmd>TodoAdd<cr>",       desc = "Add Todo Comment" },
+  { "<leader>tdf", "<cmd>TodoQuickFix<cr>",  desc = "Goto Next Todo Comment" },
+  { "<leader>tdl", "<cmd>TodoLocList<cr>",   desc = "List Todo Comments" },
+  { "<leader>tdt", "<cmd>TodoTelescope<cr>", desc = "Search Todo Comments" },
+})
+
+-- Telescope File Picker
+
+wk.add({
+  { "<leader>f",  group = "file" },
+  { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File" },
+  { "<leader>fn", "<cmd>enew<cr>",                 desc = "New File" },
+  { "<leader>fr", "<cmd>Telescope oldfiles<cr>",   desc = "Open Recent File" },
+})
+
+
+
+
+
+
+
+-- live-server.nvim -
+keymap.set('n', '<leader>ls', ':LiveServerStart<Enter>')
+keymap.set('n', '<leader>lq', ':LiveServerStop<Enter>')
+
+-- conform
+nmap('<leader>f', function()
+  vim.lsp.buf.format { async = true }
+end, 'LSP formatting')
 
 -- File Explorer
 keymap.set('n', '<C-x>', ':NvimTreeFocus<CR>')
@@ -43,6 +118,9 @@ keymap.set("n", "<C-S-s>", ":vs<CR>", { desc = "Split window vertically" })
 -- keymap.set("n", "<C-h>", ":sp<CR>", { desc = "Split window horizontally" })
 -- keymap.set("n", "<C-v>", ":vs<CR>", { desc = "Split window vertically" })
 
+------- Files ------------------------------------------------
+
+
 
 -- new file
 -- keymap("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
@@ -55,3 +133,20 @@ vim.api.nvim_set_keymap(
   ":Telescope file_browser<CR>",
   { noremap = true }
 )
+
+
+------- LSP ------------------------------------------------
+---typescript-tools
+---
+wk.add({
+  { '<leader>t',  group = 'typescript-tools' },
+  { '<leader>ti', '<cmd>TSToolsOrganizeImports<cr>',      desc = 'Organize Imports' },
+  { '<leader>ts', '<cmd>TSToolsSortImports<cr>',          desc = 'Sort Imports' },
+  { '<leader>tr', '<cmd>TSToolsRemoveUnusedImports<cr>',  desc = 'Remove Unused Imports' },
+  { '<leader>tu', '<cmd>TSToolsRemoveUnused<cr>',         desc = 'Remove Unused' },
+  { '<leader>ta', '<cmd>TSToolsAddMissingImports<cr>',    desc = 'Add Missing Imports' },
+  { '<leader>tf', '<cmd>TSToolsFixAll<cr>',               desc = 'Fix All' },
+  { '<leader>td', '<cmd>TSToolsGoToSourceDefinition<cr>', desc = 'Go To Source Definition' },
+  { '<leader>tn', '<cmd>TSToolsRenameFile<cr>',           desc = 'Rename File' },
+  { '<leader>tr', '<cmd>TSToolsFileReferences<cr>',       desc = 'File References' },
+})

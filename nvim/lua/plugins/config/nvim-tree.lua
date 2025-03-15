@@ -19,6 +19,7 @@ local function my_mapping(bufnr)
   -- Dotfiles & .gitignore
   vim.keymap.set('n', 'H', api.tree.toggle_hidden_filter, opts('Toggle Filter: Dotfiles'))
   vim.keymap.set('n', 'I', api.tree.toggle_gitignore_filter, opts('Toggle Filter: Git Ignore'))
+  -- vim.keymap.set('n', '<leader>nm', api.tree.toggle_custom_filter, opts('Toggle Filter: node_modules'))
 
   -- Filesystem operations mappings
   vim.keymap.set('n', '<leader>fc', api.fs.create, opts 'Create')
@@ -52,7 +53,7 @@ nvim_tree.setup {
   filters = {
     dotfiles = false,
     git_ignored = true,
-    custom = { 'node_modules' },
+    custom = { node_modules = true },
   },
   git = {
     enable = true,

@@ -83,13 +83,13 @@ local servers = {
   --     },
   --   },
   -- },
-  -- emmet_language_server = {
-  --   filetypes = { "css", "html", "javascript",
-  --     -- "javascriptreact", "less",
-  --     "sass", "scss",
-  --     --  svelte", "pug", "typescriptreact",
-  --     "vue" }
-  -- },
+  emmet_ls = {
+    filetypes = { "css", "html", "javascript",
+      -- "javascriptreact", "less",
+      "sass", "scss",
+      --  svelte", "pug", "typescriptreact",
+      "vue" }
+  },
   -- eslint = {},
   lua_ls = {
     Lua = {
@@ -101,10 +101,10 @@ local servers = {
     filetypes = { 'vue', 'typescript', 'javascript' },
     -- completion: { autoImport = true, tagCasing = 'Pascal', useScaffoldSnippets = true },
   },
-  yamlls = {
-    filetypes = { 'yaml', 'yaml.ansible' },
-    documentFormatting = true,
-  },
+  -- yamlls = {
+  --   filetypes = { 'yaml', 'yaml.ansible' },
+  --   documentFormatting = true,
+  -- },
 }
 
 -- Setup neovim lua configuration
