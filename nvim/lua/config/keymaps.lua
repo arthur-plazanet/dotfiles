@@ -15,6 +15,10 @@ local imap = function(keys, func, desc)
   keymap.set('i', keys, func, { desc = desc })
 end
 
+------- LSP ------------------------------------------------
+---healthcheck lsp diagnostics shortcuts
+nmap('<leader>cl', ':checkhealth lsp<CR>', 'LSP Check Health')
+
 -- local render = require 'render-markdown'
 
 -- vim.keymap.set('n', '<leader>mr', require('render-markdown').buf_toggle,
