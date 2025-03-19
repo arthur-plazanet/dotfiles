@@ -55,13 +55,15 @@ alias nv="nvim"
 alias nace="node ace"
 
 # Commands to find current Node processes
-alias findnodeports="echo 'lsof -nP -iTCP -sTCP:LISTEN | grep node' && lsof -nP -iTCP -sTCP:LISTEN | grep node"
+alias findnodeports="lsof -nP -iTCP -sTCP:LISTEN | grep node"
 
 # Git aliases
 alias gitshowmestupid="echo 'git clean -fd'"
 alias gitfake="git add . && git commit -m 'fake'"
 alias gitresetlast="git reset HEAD~1"
 alias gitstashpull="git stash -u && git pull && git stash pop"
+alias gst="git status"
+alias gitrestorecheckoutclean="git restore --staged . && git checkout . && git clean -fd"
 
 # TO CHECK
 alias history="history"
@@ -101,3 +103,4 @@ export NVM_DIR="$HOME/.nvm"
 if [ -f ~/.zpreztorc.local ]; then
   source ~/.zpreztorc.local
 fi
+HISTTIMEFORMAT="%F %T "
