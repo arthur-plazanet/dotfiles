@@ -13,7 +13,7 @@ return {
     -- Additional lua configuration, makes nvim stuff amazing!
     'folke/neodev.nvim',
   },
-  opts = function()
+  config = function()
     -- [[ Configure LSP ]]
     --  This function gets run when an LSP connects to a particular buffer.
     local on_attach = function(_, bufnr)
@@ -53,9 +53,9 @@ return {
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
       end, '[W]orkspace [L]ist Folders')
 
-      -- nmap('<leader>f', function()
-      --   vim.lsp.buf.format { async = true }
-      -- end, 'LSP formatting')
+      nmap('<leader>f', function()
+        vim.lsp.buf.format { async = true }
+      end, 'LSP formatting')
 
       -- Create a command `:Format` local to the LSP buffer
       vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
@@ -90,17 +90,8 @@ return {
         lintTask = {
           enable = true,
         },
-        marksman = {
-          enable = true,
-        },
-        yamlls = {
-          filetypes = { 'yaml', 'yaml.ansible' },
-          documentFormatting = true,
-        },
       },
-      marksman = {
-        enable = true,
-      },
+      marksman = {},
 
       -- vuels = {
       --   settings = {
@@ -195,23 +186,5 @@ return {
         }))
       end
     }
-
-
-    -- lspconfig
-    -- LSP
-    -- local lspconfig = require 'lspconfig'
-
-    -- lspconfig.tsserver.setup {}
-    -- lspconfig.eslint.setup {}
-    -- lspconfig.stylelint_lsp.setup {}
-    -- lspconfig.cssls.setup {}
-    -- lspconfig.on_attach = on_attach
-    -- lspconfig.vuels.setup {
-    --   settings = {
-    --     vetur = {
-    --       completion = { autoImport = true, tagCasing = 'initial', useScaffoldSnippets = true },
-    --     },
-    --   },
-    -- }
-  end,
+  end
 }

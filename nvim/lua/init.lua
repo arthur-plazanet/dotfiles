@@ -20,5 +20,9 @@ require("lazy").setup("plugins")
 
 require("config")
 
--- vim.keymap.set('n', '<C-b>', ':NvimTreeToggle<Enter>')
+-- TODO: TO VERIFY
+-- https://github.com/nvim-treesitter/nvim-treesitter/issues/3232#issuecomment-1198882715
+-- Issue in droplet that uses wget by default (therefore permission issues)
+require("nvim-treesitter.install").prefer_git = true
 
+-- vim.keymap.set('n', '<C-b>', ':NvimTreeToggle<Enter>')

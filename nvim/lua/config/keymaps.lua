@@ -5,7 +5,7 @@ keymap.set('t', '<Esc>', [[<C-\><C-n>]])
 
 -- Helpers
 local nmap = function(keys, func, desc)
-  keymap.set('n', keys, func, { desc = desc })
+  vim.keymap.set('n', keys, func, { desc = desc })
 end
 
 local imap = function(keys, func, desc)
@@ -19,10 +19,10 @@ end
 ---healthcheck lsp diagnostics shortcuts
 nmap('<leader>cl', ':checkhealth lsp<CR>', 'LSP Check Health')
 
--- local render = require 'render-markdown'
-
--- vim.keymap.set('n', '<leader>mr', require('render-markdown').buf_toggle,
---   { desc = '[render-markdown] Toggle state in current buffer' })
+local render = require 'render-markdown'
+nmap('<leader>mr', render.buf_toggle, '[render-markdown] Toggle state of this plugin for current buffer')
+-- vim.keymap.set('n', '<leader>mr', render.buf_toggle,
+-- { desc = '[render-markdown] Toggle state of this plugin for current buffer' })
 
 
 ------- Git ------------------------------------------------
@@ -48,10 +48,26 @@ nmap('<leader>gn', neogit.open, '[G]it [N]eogit')
 -------------------------------------------------------------
 -- Plugins
 
+-- typescript-tools.nvim
+local wk = require("which-key")
+
+wk.add({
+  { '<leader>ts',  group = 'typescript-tools' },
+  { '<leader>tsi', '<cmd>TSToolsOrganizeImports<cr>',      desc = 'Organize Imports' },
+  { '<leader>tss', '<cmd>TSToolsSortImports<cr>',          desc = 'Sort Imports' },
+  { '<leader>tsr', '<cmd>TSToolsRemoveUnusedImports<cr>',  desc = 'Remove Unused Imports' },
+  { '<leader>tsu', '<cmd>TSToolsRemoveUnused<cr>',         desc = 'Remove Unused' },
+  { '<leader>tsa', '<cmd>TSToolsAddMissingImports<cr>',    desc = 'Add Missing Imports' },
+  { '<leader>tsf', '<cmd>TSToolsFixAll<cr>',               desc = 'Fix All' },
+  { '<leader>tsd', '<cmd>TSToolsGoToSourceDefinition<cr>', desc = 'Go To Source Definition' },
+  { '<leader>tsn', '<cmd>TSToolsRenameFile<cr>',           desc = 'Rename File' },
+  { '<leader>tsr', '<cmd>TSToolsFileReferences<cr>',       desc = 'File References' },
+})
+
 -- todo-comments.nvim - https://github.com/folke/todo-comments.nvim?tab=readme-ov-file#-usage
 
 wk.add({
-  { "<leader>t",   group = "todo" },
+  { "<leader>td",  group = "todo" },
   { "<leader>tda", "<cmd>TodoAdd<cr>",       desc = "Add Todo Comment" },
   { "<leader>tdf", "<cmd>TodoQuickFix<cr>",  desc = "Goto Next Todo Comment" },
   { "<leader>tdl", "<cmd>TodoLocList<cr>",   desc = "List Todo Comments" },
@@ -67,22 +83,21 @@ wk.add({
   { "<leader>fr", "<cmd>Telescope oldfiles<cr>",   desc = "Open Recent File" },
 })
 
+--
+-- Telescope luasnip
+--
+vim.keymap.set('n', '<leader>ps', function() vim.cmd [[ Telescope luasnip ]] end, { noremap = true, silent = true })
 
-
-
-
-
-
--- live-server.nvim -
-keymap.set('n', '<leader>ls', ':LiveServerStart<Enter>')
-keymap.set('n', '<leader>lq', ':LiveServerStop<Enter>')
-
+--
 -- conform
-nmap('<leader>f', function()
-  vim.lsp.buf.format { async = true }
-end, 'LSP formatting')
+--
+-- nmap('<leader>f', function()
+--   vim.lsp.buf.format { async = true }
+-- end, 'LSP formatting')
 
+--
 -- File Explorer
+--
 keymap.set('n', '<C-x>', ':NvimTreeFocus<CR>')
 keymap.set('n', '<C-b>', ':NvimTreeToggle<CR>')
 
@@ -139,18 +154,8 @@ vim.api.nvim_set_keymap(
 )
 
 
-------- LSP ------------------------------------------------
----typescript-tools
+------Database------------------------------------------------
+--- nvim-dbee
 ---
-wk.add({
-  { '<leader>t',  group = 'typescript-tools' },
-  { '<leader>ti', '<cmd>TSToolsOrganizeImports<cr>',      desc = 'Organize Imports' },
-  { '<leader>ts', '<cmd>TSToolsSortImports<cr>',          desc = 'Sort Imports' },
-  { '<leader>tr', '<cmd>TSToolsRemoveUnusedImports<cr>',  desc = 'Remove Unused Imports' },
-  { '<leader>tu', '<cmd>TSToolsRemoveUnused<cr>',         desc = 'Remove Unused' },
-  { '<leader>ta', '<cmd>TSToolsAddMissingImports<cr>',    desc = 'Add Missing Imports' },
-  { '<leader>tf', '<cmd>TSToolsFixAll<cr>',               desc = 'Fix All' },
-  { '<leader>td', '<cmd>TSToolsGoToSourceDefinition<cr>', desc = 'Go To Source Definition' },
-  { '<leader>tn', '<cmd>TSToolsRenameFile<cr>',           desc = 'Rename File' },
-  { '<leader>tr', '<cmd>TSToolsFileReferences<cr>',       desc = 'File References' },
-})
+-- local dbee = require('dbee')
+-- keymap.set("n", "<leader>db", dbee.toggle, { desc = "Toggle DBEE" })
