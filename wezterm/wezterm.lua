@@ -54,4 +54,16 @@ config.keys = {
 config.disable_default_key_bindings = true
 
 -- and finally, return the configuration to wezterm
+
+config.enable_scroll_bar = true
+
+-- https://github.com/numToStr/dotfiles/blob/master/wezterm/.config/wezterm/wezterm.lua
+config.colors = {
+        foreground = '#e0def4',
+        background = '#12121e',
+        cursor_bg = '#dddddd',
+        cursor_fg = '#12121e',
+        selection_fg = '#12121e',
+        selection_bg = '#FFFACD',
+    }
 return config

@@ -1,2 +1,14 @@
 -- Useful plugin to show you pending keybinds.
-return { 'folke/which-key.nvim', opts = {} }
+return {
+  'folke/which-key.nvim',
+  opts = {},
+  keys = {
+    {
+      "<leader>wk",
+      function()
+        require("which-key").show({ global = false })
+      end,
+      desc = "Buffer Local Keymaps (which-key)",
+    },
+  },
+}
