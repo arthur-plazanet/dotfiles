@@ -31,9 +31,21 @@ return {
         vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
       end
 
+      local buf = vim.lsp.buf
+      local wk = require 'which-key'
+
       nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
       nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
+      wk.add({
+        name = 'LSP',
+        ['<leader>'] = {
+          d = { name = 'Diagnostics' },
+          r = { name = 'References' },
+          w = { name = 'Workspace' },
+          f = { name = 'Format' },
+        },
+      })
       nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
       nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
       nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
@@ -79,7 +91,7 @@ return {
       cssls = {},
       html = {},
       eslint = {
-        -- enable = true,
+        enable = true,
         format = { enable = true }, -- this will enable formatting
         -- packageManager = "yarn",
         autoFixOnSave = true,
@@ -109,10 +121,10 @@ return {
       },
       -- eslint = {},
       lua_ls = {
-        Lua = {
-          workspace = { checkThirdParty = false },
-          telemetry = { enable = false },
-        },
+        -- Lua = {
+        --   workspace = { checkThirdParty = false },
+        --   telemetry = { enable = false },
+        -- },
       },
       volar = {
         filetypes = { 'vue', 'typescript', 'javascript' },
@@ -156,15 +168,13 @@ return {
     -- -- Ensure the servers above are installed
     local mason_lspconfig = require 'mason-lspconfig'
 
-    mason_lspconfig.setup {
+    mason_lspconfig.setup({
       ensure_installed = vim.tbl_keys(servers),
       registries = {
         "github:mason-org/mason-registry@2023-05-15-next-towel"
-      }
-    }
-
-    mason_lspconfig.setup_handlers {
-      function(server_name)
+      },
+      handlers = {
+        function(server_name)
         require('lspconfig')[server_name].setup {
           capabilities = capabilities,
           on_attach = on_attach,
@@ -172,19 +182,41 @@ return {
           filetypes = (servers[server_name] or {}).filetypes,
         }
       end,
-
-      -- From https://github.com/ericlovesmath/dotfiles/blob/069d1680acd4f130191038bb35db734674806c4c/.config/nvim/lua/plugins/lsp.lua#L40
-      -- Required for html/cssls because Microsoft
-      ["html"] = function()
-        nvim_lsp.html.setup(config({
-          capabilities = capabilities,
-        }))
-      end,
-      ["cssls"] = function()
-        nvim_lsp.cssls.setup(config({
-          capabilities = capabilities,
-        }))
-      end
+      -- ["html"] = function()
+      --   nvim_lsp.html.setup(config({
+      --     capabilities = capabilities,
+      --   }))
+      -- end,
+      --       ["cssls"] = function()
+      --   nvim_lsp.cssls.setup(config({
+      --     capabilities = capabilities,
+      --   }))
+      -- end
     }
+    })
+
+    -- mason_lspconfig.setup_handlers {
+    --   function(server_name)
+    --     require('lspconfig')[server_name].setup {
+    --       capabilities = capabilities,
+    --       on_attach = on_attach,
+    --       settings = servers[server_name],
+    --       filetypes = (servers[server_name] or {}).filetypes,
+    --     }
+    --   end,
+
+    --   -- From https://github.com/ericlovesmath/dotfiles/blob/069d1680acd4f130191038bb35db734674806c4c/.config/nvim/lua/plugins/lsp.lua#L40
+    --   -- Required for html/cssls because Microsoft
+    --   ["html"] = function()
+    --     nvim_lsp.html.setup(config({
+    --       capabilities = capabilities,
+    --     }))
+    --   end,
+    --   ["cssls"] = function()
+    --     nvim_lsp.cssls.setup(config({
+    --       capabilities = capabilities,
+    --     }))
+    --   end
+    -- }
   end
 }
