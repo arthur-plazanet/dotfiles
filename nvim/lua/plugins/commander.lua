@@ -1,25 +1,24 @@
 -- Plugin Manager: lazy.nvim
 return {
-  "FeiyouG/commander.nvim",
+  'FeiyouG/commander.nvim',
   dependencies = {
-    "nvim-telescope/telescope.nvim",
+    'nvim-telescope/telescope.nvim',
   },
   keys = {
-    { "<leader>f",  "<CMD>Telescope commander<CR>", mode = "n" },
-    { "<leader>fc", "<CMD>Telescope commander<CR>", mode = "n" }
+    { '<leader>fc', '<CMD>Telescope commander<CR>', mode = 'n' },
   },
   config = function()
-    require("commander").setup({
+    require('commander').setup {
       components = {
-        "DESC",
-        "KEYS",
-        "CAT",
+        'DESC',
+        'KEYS',
+        'CAT',
       },
       sort_by = {
-        "DESC",
-        "KEYS",
-        "CAT",
-        "CMD"
+        'DESC',
+        'KEYS',
+        'CAT',
+        'CMD',
       },
       integration = {
         telescope = {
@@ -27,9 +26,9 @@ return {
         },
         lazy = {
           enable = true,
-          set_plugin_name_as_cat = true
-        }
-      }
-    })
+          set_plugin_name_as_cat = true,
+        },
+      },
+    }
   end,
 }
