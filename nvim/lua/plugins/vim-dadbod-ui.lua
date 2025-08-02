@@ -12,14 +12,11 @@ local M = {
   },
   init = function()
     vim.g.db_ui_use_nerd_fonts = 1
+    local wk = require 'which-key'
+    wk.add {
+      { '<leader>db', ':DBUIToggle<CR>', desc = 'Toggle DBUI' },
+    }
   end,
 }
-
-function M.config()
-  local wk = require 'which-key'
-  wk.add {
-    { '<leader>db', ':DBUIToggle<CR>', desc = 'Toggle DBUI' },
-  }
-end
 
 return M

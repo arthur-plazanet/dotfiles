@@ -13,6 +13,18 @@ return {
     -- Additional lua configuration, makes nvim stuff amazing!
     'folke/neodev.nvim',
   },
+  keys = function()
+    local wk = require 'which-key'
+    wk.add {
+      name = 'LSP',
+      { 'gd',        desc = '[G]oto [D]efinition' },
+      { 'gD',        desc = '[G]oto [D]eclaration' },
+      { 'gr',        desc = '[G]oto [R]eferences' },
+      { 'gI',        desc = '[G]oto [I]mplementation' },
+      { '<leader>D', desc = 'Type [D]efinition' },
+    }
+  end,
+
   config = function()
     -- [[ Configure LSP ]]
     --  This function gets run when an LSP connects to a particular buffer.
@@ -37,7 +49,7 @@ return {
       nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
       nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
-      wk.add({
+      wk.add {
         name = 'LSP',
         ['<leader>'] = {
           d = { name = 'Diagnostics' },
@@ -45,7 +57,7 @@ return {
           w = { name = 'Workspace' },
           f = { name = 'Format' },
         },
-      })
+      }
       nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
       nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
       nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
@@ -96,7 +108,7 @@ return {
         -- packageManager = "yarn",
         autoFixOnSave = true,
         codeActionsOnSave = {
-          mode = "all",
+          mode = 'all',
           -- rules = { "!debugger", "!no-only-tests/*" },
         },
         lintTask = {
@@ -113,11 +125,16 @@ return {
       --   },
       -- },
       emmet_ls = {
-        filetypes = { "css", "html", "javascript",
+        filetypes = {
+          'css',
+          'html',
+          'javascript',
           -- "javascriptreact", "less",
-          "sass", "scss",
+          'sass',
+          'scss',
           --  svelte", "pug", "typescriptreact",
-          "vue" }
+          'vue',
+        },
       },
       -- eslint = {},
       lua_ls = {
@@ -126,9 +143,8 @@ return {
         --   telemetry = { enable = false },
         -- },
       },
-      volar = {
-        filetypes = { 'vue', 'typescript', 'javascript' },
-        -- completion: { autoImport = true, tagCasing = 'Pascal', useScaffoldSnippets = true },
+      tailwindcss = {
+        filetypes = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'vue', },
       },
       -- yamlls = {
       --   filetypes = { 'yaml', 'yaml.ansible' },
@@ -143,57 +159,54 @@ return {
     -- local capabilities = vim.lsp.protocol.make_client_capabilities()
     -- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-
     -- From https://github.com/ericlovesmath/dotfiles/blob/069d1680acd4f130191038bb35db734674806c4c/.config/nvim/lua/plugins/lsp.lua#L40
     -- Required for html/cssls because Microsoft
-    local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+    local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
     capabilities.textDocument.completion.completionItem.snippetSupport = true
 
     local function config(_config)
-      return vim.tbl_deep_extend("force", {
+      return vim.tbl_deep_extend('force', {
         on_attach = on_attach,
       }, _config or {})
     end
 
-    local nvim_lsp = require("lspconfig")
+    local nvim_lsp = require 'lspconfig'
 
-
-    require("mason").setup {
+    require('mason').setup {
       registries = {
-        "github:mason-org/mason-registry@2023-05-15-next-towel"
-      }
+        'github:mason-org/mason-registry@2023-05-15-next-towel',
+      },
     }
-
 
     -- -- Ensure the servers above are installed
     local mason_lspconfig = require 'mason-lspconfig'
 
-    mason_lspconfig.setup({
+    mason_lspconfig.setup {
       ensure_installed = vim.tbl_keys(servers),
       registries = {
-        "github:mason-org/mason-registry@2023-05-15-next-towel"
+        'github:mason-org/mason-registry@2023-05-15-next-towel',
       },
       handlers = {
         function(server_name)
-        require('lspconfig')[server_name].setup {
-          capabilities = capabilities,
-          on_attach = on_attach,
-          settings = servers[server_name],
-          filetypes = (servers[server_name] or {}).filetypes,
-        }
-      end,
-      -- ["html"] = function()
-      --   nvim_lsp.html.setup(config({
-      --     capabilities = capabilities,
-      --   }))
-      -- end,
-      --       ["cssls"] = function()
-      --   nvim_lsp.cssls.setup(config({
-      --     capabilities = capabilities,
-      --   }))
-      -- end
+          require('lspconfig')[server_name].setup {
+            capabilities = capabilities,
+            on_attach = on_attach,
+            settings = servers[server_name],
+            filetypes = (servers[server_name] or {}).filetypes,
+          }
+        end,
+        -- ["html"] = function()
+        --   nvim_lsp.html.setup(config({
+        --     capabilities = capabilities,
+        --   }))
+        -- end,
+        --       ["cssls"] = function()
+        --   nvim_lsp.cssls.setup(config({
+        --     capabilities = capabilities,
+        --   }))
+        -- end
+      },
     }
-    })
 
     -- mason_lspconfig.setup_handlers {
     --   function(server_name)
@@ -218,5 +231,5 @@ return {
     --     }))
     --   end
     -- }
-  end
+  end,
 }
