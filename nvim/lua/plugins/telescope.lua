@@ -53,15 +53,14 @@ return {
     local builtin = require("telescope.builtin")
     local wk = require("which-key")
     wk.add({
-      name = "Telescope",
-      ["<leader>sf"] = { builtin.find_files, desc = "[S]earch [F]iles" },
-      ["<leader>sh"] = { builtin.help_tags, desc = "[S]earch [H]elp" },
-      ["<leader>sw"] = { builtin.grep_string, desc = "[S]earch current [W]ord" },
-      ["<leader>sg"] = { builtin.live_grep, desc = "[S]earch by [G]rep" },
-      ["<leader>sd"] = { builtin.diagnostics, desc = "[S]earch [D]iagnostics" },
-      ["<leader>sb"] = { builtin.builtin, desc = "[S]earch [B]uiltins" },
-      ["<leader>?"] = { builtin.oldfiles, desc = "[?] Find recently opened files" },
-
+      { '<leader>s',  group = "telescope" },
+      { "<leader>sf", builtin.find_files,  desc = "Search Files" },
+      { "<leader>sh", builtin.help_tags,   desc = "Search Help" },
+      { "<leader>sw", builtin.grep_string, desc = "Search Current Word" },
+      { "<leader>sg", builtin.live_grep,   desc = "Search by Grep" },
+      { "<leader>sd", builtin.diagnostics, desc = "Search Diagnostics" },
+      { "<leader>sb", builtin.builtin,     desc = "Search Builtins" },
+      { "<leader>?",  builtin.oldfiles,    desc = "Find Recently Opened Files" },
     })
   end
 }

@@ -1,6 +1,23 @@
 return {
   "folke/todo-comments.nvim",
   dependencies = { "nvim-lua/plenary.nvim" },
+  init = function()
+    -- pre-load Which-Key grouping (instant and cheap)
+    local wk = require("which-key")
+
+    wk.add({
+      { "<leader>td",  group = "Todo" },
+      { "<leader>tda", group = "Comments" },
+    })
+  end,
+
+  -- declarative keymaps → plugin only loads on first press
+  keys = {
+    { "<leader>tda", "<cmd>TodoAdd<cr>",       desc = "Add Todo Comment" },
+    { "<leader>tdf", "<cmd>TodoNext<cr>",      desc = "Next Todo Comment" },
+    { "<leader>tdl", "<cmd>TodoLocList<cr>",   desc = "List Todo Comments" },
+    { "<leader>tdt", "<cmd>TodoTelescope<cr>", desc = "Search Todo Comments" },
+  },
   opts = {
     signs = true,      -- show icons in the signs column
     sign_priority = 8, -- sign priority
@@ -67,22 +84,4 @@ return {
     },
 
   },
-  -- keys = function()
-  --   local wk = require("which-key")
-
-  --   wk.add({
-  --     { "<leader>td",  group = "todo" },
-  --     { "<leader>tda", "<cmd>TodoAdd<cr>",       desc = "Add Todo Comment" },
-  --     { "<leader>tdf", "<cmd>TodoQuickFix<cr>",  desc = "Goto Next Todo Comment" },
-  --     { "<leader>tdl", "<cmd>TodoLocList<cr>",   desc = "List Todo Comments" },
-  --     { "<leader>tdt", "<cmd>TodoTelescope<cr>", desc = "Search Todo Comments" },
-  --   })
-  -- end,
-  -- keys = {
-  --   -- { "<leader>t",   group = "todo" },
-  --   { "<leader>tda", "<cmd>TodoAdd<cr>",       desc = "Add Todo Comment" },
-  --   { "<leader>tdf", "<cmd>TodoQuickFix<cr>",  desc = "Goto Next Todo Comment" },
-  --   { "<leader>tdl", "<cmd>TodoLocList<cr>",   desc = "List Todo Comments" },
-  --   { "<leader>tdt", "<cmd>TodoTelescope<cr>", desc = "Search Todo Comments" },
-  -- }
 }

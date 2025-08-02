@@ -7,5 +7,14 @@ return {
   ---@type render.md.UserConfig
   opts = {
     file_types = { 'markdown', 'quarto' },
-  }
+  },
+  keys = function()
+    local wk = require 'which-key'
+    local render = require 'render-markdown'
+
+    wk.add {
+      { '<leader>mr', group = 'render-markdown' },
+      { '<leader>mr', render.buf_toggle,        desc = '[render-markdown] Toggle state of this plugin for current buffer' },
+    }
+  end,
 }

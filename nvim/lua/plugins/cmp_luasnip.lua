@@ -26,8 +26,7 @@ local cmp = {
     require('luasnip.loaders.from_vscode').lazy_load({ paths = "~/config/nvim/lua/config/snippets/vscode" })
     local cmp = require('cmp')
     local luasnip = require('luasnip')
-    require('cmp').setup {
-
+    cmp.setup({
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
@@ -45,15 +44,15 @@ local cmp = {
         },
         -- To avoid collision with Copilot
         --
-        ['<Tab>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-          elseif luasnip.expand_or_locally_jumpable() then
-            luasnip.expand_or_jump()
-          else
-            fallback()
-          end
-        end, { 'i', 's' }),
+        -- ['<Tab>'] = cmp.mapping(function(fallback)
+        --   if cmp.visible() then
+        --     cmp.select_next_item()
+        --   elseif luasnip.expand_or_locally_jumpable() then
+        --     luasnip.expand_or_jump()
+        --   else
+        --     fallback()
+        --   end
+        -- end, { 'i', 's' }),
         ['<S-Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
@@ -67,8 +66,16 @@ local cmp = {
       sources = {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
+        { name = 'friendly-snippets' },
       },
-    }
+      -- setup vim-dadbod
+      cmp.setup.filetype({ "sql" }, {
+        sources = {
+          { name = "vim-dadbod-completion" },
+          { name = "buffer" },
+        },
+      })
+    })
   end,
 }
 

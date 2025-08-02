@@ -19,10 +19,6 @@ end
 ---healthcheck lsp diagnostics shortcuts
 nmap('<leader>cl', ':checkhealth lsp<CR>', 'LSP Check Health')
 
-local render = require 'render-markdown'
-nmap('<leader>mr', render.buf_toggle, '[render-markdown] Toggle state of this plugin for current buffer')
--- vim.keymap.set('n', '<leader>mr', render.buf_toggle,
--- { desc = '[render-markdown] Toggle state of this plugin for current buffer' })
 
 ------- Git ------------------------------------------------
 
@@ -37,10 +33,10 @@ nmap('<leader>gs', builtin.git_status, '[G]it [S]tatus')
 nmap('<leader>gst', builtin.git_stash, '[G]it [S]tash')
 
 -- Neogit
-local neogit = require 'neogit'
+-- local neogit = require 'neogit'
 
--- open using defaults
-nmap('<leader>gn', neogit.open, '[G]it [N]eogit')
+-- -- open using defaults
+-- nmap('<leader>gn', neogit.open, '[G]it [N]eogit')
 -- open as a split
 -- vim.keymap.set('n', '<leader>gns', neogit.open_split, { desc = 'Open Neogit in a split' })
 
@@ -48,39 +44,30 @@ nmap('<leader>gn', neogit.open, '[G]it [N]eogit')
 -- Plugins
 
 -- typescript-tools.nvim
-local wk = require 'which-key'
+-- local wk = require 'which-key'
 
-wk.add {
-  { '<leader>ts', group = 'typescript-tools' },
-  { '<leader>tsi', '<cmd>TSToolsOrganizeImports<cr>', desc = 'Organize Imports' },
-  { '<leader>tss', '<cmd>TSToolsSortImports<cr>', desc = 'Sort Imports' },
-  { '<leader>tsr', '<cmd>TSToolsRemoveUnusedImports<cr>', desc = 'Remove Unused Imports' },
-  { '<leader>tsu', '<cmd>TSToolsRemoveUnused<cr>', desc = 'Remove Unused' },
-  { '<leader>tsa', '<cmd>TSToolsAddMissingImports<cr>', desc = 'Add Missing Imports' },
-  { '<leader>tsf', '<cmd>TSToolsFixAll<cr>', desc = 'Fix All' },
-  { '<leader>tsd', '<cmd>TSToolsGoToSourceDefinition<cr>', desc = 'Go To Source Definition' },
-  { '<leader>tsn', '<cmd>TSToolsRenameFile<cr>', desc = 'Rename File' },
-  { '<leader>tsr', '<cmd>TSToolsFileReferences<cr>', desc = 'File References' },
-}
+-- wk.add {
+--   { '<leader>ts',  group = 'typescript-tools' },
+--   { '<leader>tsi', '<cmd>TSToolsOrganizeImports<cr>',      desc = 'Organize Imports' },
+--   { '<leader>tss', '<cmd>TSToolsSortImports<cr>',          desc = 'Sort Imports' },
+--   { '<leader>tsr', '<cmd>TSToolsRemoveUnusedImports<cr>',  desc = 'Remove Unused Imports' },
+--   { '<leader>tsu', '<cmd>TSToolsRemoveUnused<cr>',         desc = 'Remove Unused' },
+--   { '<leader>tsa', '<cmd>TSToolsAddMissingImports<cr>',    desc = 'Add Missing Imports' },
+--   { '<leader>tsf', '<cmd>TSToolsFixAll<cr>',               desc = 'Fix All' },
+--   { '<leader>tsd', '<cmd>TSToolsGoToSourceDefinition<cr>', desc = 'Go To Source Definition' },
+--   { '<leader>tsn', '<cmd>TSToolsRenameFile<cr>',           desc = 'Rename File' },
+--   { '<leader>tsr', '<cmd>TSToolsFileReferences<cr>',       desc = 'File References' },
+-- }
 
 -- todo-comments.nvim - https://github.com/folke/todo-comments.nvim?tab=readme-ov-file#-usage
 
-wk.add {
-  { '<leader>td', group = 'todo' },
-  { '<leader>tda', '<cmd>TodoAdd<cr>', desc = 'Add Todo Comment' },
-  { '<leader>tdf', '<cmd>TodoQuickFix<cr>', desc = 'Goto Next Todo Comment' },
-  { '<leader>tdl', '<cmd>TodoLocList<cr>', desc = 'List Todo Comments' },
-  { '<leader>tdt', '<cmd>TodoTelescope<cr>', desc = 'Search Todo Comments' },
-}
-
--- Telescope File Picker
-
-wk.add {
-  { '<leader>f', group = 'file' },
-  { '<leader>ff', '<cmd>Telescope find_files<cr>', desc = 'Find File' },
-  { '<leader>fn', '<cmd>enew<cr>', desc = 'New File' },
-  { '<leader>fr', '<cmd>Telescope oldfiles<cr>', desc = 'Open Recent File' },
-}
+-- wk.add {
+--   { '<leader>td',  group = 'todo' },
+--   { '<leader>tda', '<cmd>TodoAdd<cr>',       desc = 'Add Todo Comment' },
+--   { '<leader>tdf', '<cmd>TodoQuickFix<cr>',  desc = 'Goto Next Todo Comment' },
+--   { '<leader>tdl', '<cmd>TodoLocList<cr>',   desc = 'List Todo Comments' },
+--   { '<leader>tdt', '<cmd>TodoTelescope<cr>', desc = 'Search Todo Comments' },
+-- }
 
 --
 -- Telescope luasnip

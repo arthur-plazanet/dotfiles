@@ -1,11 +1,22 @@
 return {
   "NeogitOrg/neogit",
   dependencies = {
-    "nvim-lua/plenary.nvim",  -- required
-    "sindrets/diffview.nvim", -- optional - Diff integration
+    "nvim-lua/plenary.nvim", -- required
 
     -- Only one of these is needed.
     "nvim-telescope/telescope.nvim", -- optional
   },
-  config = true
+
+  cmd = "Neogit",
+
+  keys = {
+    { "<leader>gn", "<cmd>Neogit<cr>", desc = "Open Neogit" },
+  },
+
+  config = function()
+    require("neogit").setup({
+      disable_commit_confirmation = true,
+      integrations = { diffview = true },
+    })
+  end,
 }

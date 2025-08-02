@@ -36,18 +36,40 @@ return {
   opts = {
     -- Define your formatters
     formatters_by_ft = {
-      lua = { "stylua", "prettierd", "prettier" },
-      javascript = { "prettierd", "prettier", stop_after_first = true },
-      yaml = { "prettier", "prettierd" },
-      yml = { "prettier", "prettierd" },
-      markdown = { "prettierd", "prettier" },
-      vue = { "prettierd", "prettier" },
-      svg = { "prettierd", "prettier" },
-      json = { "prettierd", "prettier" },
-      html = { "prettierd", "prettier" },
-      css = { "prettierd", "prettier" },
+      markdown = function(bufnr)
+        return { first(bufnr, "prettierd", "prettier"), "injected" }
+      end,
+      javascript = function(bufnr)
+        return { first(bufnr, "prettierd", "prettier"), "injected" }
+      end,
+      typescript = function(bufnr)
+        return { first(bufnr, "prettierd", "prettier"), "injected" }
+      end,
+      json = function(bufnr)
+        return { first(bufnr, "prettierd", "prettier"), "injected" }
+      end,
+      lua = function(bufnr)
+        return { first(bufnr, "stylua", "prettierd", "prettier"), "injected" }
+      end,
+      css = function(bufnr)
+        return { first(bufnr, "prettierd", "prettier"), "injected" }
+      end,
+      html = function(bufnr)
+        return { first(bufnr, "prettierd", "prettier"), "injected" }
+      end,
+      yaml = function(bufnr)
+        return { first(bufnr, "prettierd", "prettier"), "injected" }
+      end,
+      sh = function(bufnr)
+        return { first(bufnr, "shfmt", "prettierd", "prettier"), "injected" }
+      end,
+      vue = function(bufnr)
+        return { first(bufnr, "prettierd", "prettier"), "injected" }
+      end,
+      svg = function(bufnr)
+        return { first(bufnr, "prettierd", "prettier"), "injected" }
+      end,
       ["*"] = { "prettierd", "prettier" },
-      typescript = { "prettierd", "prettier", stop_after_first = true },
     },
     -- Set default options
     default_format_opts = {
