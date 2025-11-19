@@ -1,6 +1,6 @@
 [general]
 import = [
-    "./themes/dracula.toml"
+    "./themes/kanagawa_wave.toml"
 ]
 
 [font.bold]
