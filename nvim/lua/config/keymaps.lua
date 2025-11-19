@@ -72,9 +72,9 @@ nmap('<leader>gst', builtin.git_stash, '[G]it [S]tash')
 --
 -- Telescope luasnip
 --
-vim.keymap.set('n', '<leader>ps', function()
-  vim.cmd [[ Telescope luasnip ]]
-end, { noremap = true, silent = true })
+-- vim.keymap.set('n', '<leader>ps', function()
+--   vim.cmd [[ Telescope luasnip ]]
+-- end, { noremap = true, silent = true })
 
 --
 -- conform
@@ -132,7 +132,7 @@ keymap.set('n', '<C-S-s>', ':vs<CR>', { desc = 'Split window vertically' })
 
 -- keymap("n", "<leader>uf", require("lazyvim.plugins.lsp.format").toggle, { desc = "Toggle format on Save" })
 --
-vim.api.nvim_set_keymap('n', '<space>fb', ':Telescope file_browser<CR>', { noremap = true })
+-- vim.api.nvim_set_keymap('n', '<space>fb', ':Telescope file_browser<CR>', { noremap = true })
 
 ------Database------------------------------------------------
 --- nvim-dbee

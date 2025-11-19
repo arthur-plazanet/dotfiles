@@ -1,4 +1,4 @@
--- Plugin Manager: lazy.nvim
+-- https://github.com/FeiyouG/commander.nvim
 return {
   'FeiyouG/commander.nvim',
   dependencies = {

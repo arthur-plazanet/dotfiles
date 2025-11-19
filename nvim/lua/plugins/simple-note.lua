@@ -19,12 +19,9 @@ return {
 
 
     })
-    local wk = require('which-key')
-
-    wk.add {
-      { '<leader>n',  group = 'Simple Note' },
-      { '<leader>n',  ':SimpleNoteList<CR>',   desc = '[Simple Note] Show note list' },
-      { '<leader>nc', ':SimpleNoteCreate<CR>', desc = '[Simple Note] Create new note' },
-    }
-  end
+  end,
+  keys = {
+    { '<leader>n',  ':SimpleNoteList<CR>',   desc = '[Simple Note] Show note list',  mode = 'n' },
+    { '<leader>nc', ':SimpleNoteCreate<CR>', desc = '[Simple Note] Create new note', mode = 'n' },
+  },
 }
