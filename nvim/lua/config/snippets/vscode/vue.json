@@ -1,7 +1,7 @@
 {
-  // Place your snippets for vue here. Each snippet is defined under a snippet name and has a prefix, body and 
+  // Place your snippets for vue here. Each snippet is defined under a snippet name and has a prefix, body and
   // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
-  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
   // same ids are connected.
   // Example:
   // "Print to console": {
@@ -14,9 +14,7 @@
   // }
   "console.log": {
     "prefix": "!cl",
-    "body": [
-      "console.log('$1');"
-    ]
+    "body": ["console.log('$1');"]
   },
   "console.group": {
     "prefix": "!clg",
@@ -28,21 +26,15 @@
   },
   "console.table": {
     "prefix": "!clt",
-    "body": [
-      "console.table('$2')"
-    ]
+    "body": ["console.table('$2')"]
   },
   "console.dir": {
     "prefix": "!cld",
-    "body": [
-      "console.dir('$1')"
-    ]
+    "body": ["console.dir('$1')"]
   },
   "console.log purple": {
     "prefix": "!clp",
-    "body": [
-      "console.log('$1', 'color: purple, font-weight: bold');"
-    ]
+    "body": ["console.log('$1', 'color: purple, font-weight: bold');"]
   },
   "console.log red": {
     "prefix": "!clr",
@@ -71,20 +63,12 @@
   },
   "watch": {
     "prefix": "watch",
-    "body": [
-      "watch($1, ($2, $3) => {",
-      "$0",
-      "});"
-    ],
+    "body": ["watch($1, ($2, $3) => {", "$0", "});"],
     "description": "Watch over a reactive source and call a function in reaction to state changes "
   },
   "watchEffect-composition": {
     "prefix": "watchEffect",
-    "body": [
-      "watchEffect($1, ($2, $3) => {",
-      "$0",
-      "});"
-    ],
+    "body": ["watchEffect($1, ($2, $3) => {", "$0", "});"],
     "description": "watchEffect from vue composition "
-  },
+  }
 }
