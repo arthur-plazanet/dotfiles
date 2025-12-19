@@ -12,6 +12,12 @@ return {
     local dashboard = require('alpha.themes.dashboard')
     -- local headers = alpha.ascii_art
 
+    -- Define keymaps
+    local wk = require 'which-key'
+    wk.add {
+      { '<leader>a', '<cmd>Alpha<cr>', desc = 'Alpha Dashboard' }
+    }
+
     local leader = '<LD>'
 
     local function button(sc, txt, leader_txt, keybind, keybind_opts)
@@ -118,5 +124,6 @@ return {
     }
 
     alpha.setup(dashboard.opts)
-  end
+  end,
+
 }

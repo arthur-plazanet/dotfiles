@@ -36,6 +36,7 @@
 - [conform.nvim](https://github.com/stevearc/conform.nvim) — Async code formatter with on-save support.
 - [suave.nvim](https://github.com/miikanissi/suave.nvim) — Smooth scrolling and cursor movement animations.
 - [tsj.nvim](https://github.com/Wansmer/treesj) — Toggle between single-line and multiline code structures.
+- [grug-far.nvim](https://github.com/MagicDuck/grug-far.nvim) - Find And Replace plugin for neovim
 
 ### 🔌 Git Integration
 

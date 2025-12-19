@@ -24,3 +24,9 @@ require("config")
 -- https://github.com/nvim-treesitter/nvim-treesitter/issues/3232#issuecomment-1198882715
 -- Issue in droplet that uses wget by default (therefore permission issues)
 require("nvim-treesitter.install").prefer_git = true
+
+require("ibl").setup()
+
+-- To call after vim.o.termguicolors = true
+-- https://github.com/akinsho/bufferline.nvim?tab=readme-ov-file#usage
+-- require("bufferline").setup {}

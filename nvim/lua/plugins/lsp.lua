@@ -153,9 +153,10 @@ return {
         vim.api.nvim_create_autocmd("BufWritePre", {
           buffer = args.buf,
           callback = function()
-            if client:supports_method("textDocument/formatting") then
-              vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
-            end
+            -- NOTE: Disabled LSP formatting in favor of conform.nvim
+            -- if client:supports_method("textDocument/formatting") then
+            --   vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
+            -- end
 
             if client:supports_method("textDocument/codeAction") then
               local function apply_code_action(action_type)
