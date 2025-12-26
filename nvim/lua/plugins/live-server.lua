@@ -4,7 +4,7 @@ return {
   cmd = { 'LiveServerStart', 'LiveServerStop' },
   config = true,
   keys = {
-    { '<leader>ls', ':LiveServerStart<Enter>', desc = 'Start Live Server' },
-    { '<leader>lq', ':LiveServerStop<Enter>', desc = 'Stop Live Server' },
+    { '<leader>ls', ':LiveServerStart<CR>', desc = 'Start Live Server' },
+    { '<leader>lq', ':LiveServerStop<CR>',  desc = 'Stop Live Server' },
   },
 }

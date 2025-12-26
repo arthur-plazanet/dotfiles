@@ -5,8 +5,8 @@
 ---@param ... string
 ---@return string
 local function first(bufnr, ...)
-  local conform = require("conform")
-  for i = 1, select("#", ...) do
+  local conform = require 'conform'
+  for i = 1, select('#', ...) do
     local formatter = select(i, ...)
     if conform.get_formatter_info(formatter, bufnr).available then
       return formatter
@@ -16,18 +16,18 @@ local function first(bufnr, ...)
 end
 
 return {
-  "stevearc/conform.nvim",
-  event = { "BufWritePre" },
-  cmd = { "ConformInfo" },
+  'stevearc/conform.nvim',
+  event = { 'BufWritePre' },
+  cmd = { 'ConformInfo' },
   keys = {
     {
       -- Customize or remove this keymap to your liking
-      "<leader>f",
+      '<leader>f',
       function()
-        require("conform").format({ async = true })
+        require('conform').format { async = true }
       end,
-      mode = "",
-      desc = "Format buffer",
+      mode = '',
+      desc = 'Format buffer',
     },
   },
   -- This will provide type hinting with LuaLS
@@ -37,50 +37,50 @@ return {
     -- Define your formatters
     formatters_by_ft = {
       markdown = function(bufnr)
-        return { first(bufnr, "prettierd", "prettier"), "injected" }
+        return { first(bufnr, 'prettierd', 'prettier'), 'injected' }
       end,
       javascript = function(bufnr)
-        return { first(bufnr, "prettierd", "prettier"), "injected" }
+        return { first(bufnr, 'prettierd', 'prettier'), 'injected' }
       end,
       typescript = function(bufnr)
-        return { first(bufnr, "prettierd", "prettier"), "injected" }
+        return { first(bufnr, 'prettierd', 'prettier'), 'injected' }
       end,
       json = function(bufnr)
-        return { first(bufnr, "prettierd", "prettier"), "injected" }
+        return { first(bufnr, 'prettierd', 'prettier'), 'injected' }
       end,
       lua = function(bufnr)
-        return { first(bufnr, "stylua", "prettierd", "prettier"), "injected" }
+        return { first(bufnr, 'stylua', 'prettierd', 'prettier'), 'injected' }
       end,
       css = function(bufnr)
-        return { first(bufnr, "prettierd", "prettier"), "injected" }
+        return { first(bufnr, 'prettierd', 'prettier'), 'injected' }
       end,
       html = function(bufnr)
-        return { first(bufnr, "prettierd", "prettier"), "injected" }
+        return { first(bufnr, 'prettierd', 'prettier'), 'injected' }
       end,
       yaml = function(bufnr)
-        return { first(bufnr, "prettierd", "prettier"), "injected" }
+        return { first(bufnr, 'prettierd', 'prettier'), 'injected' }
       end,
       sh = function(bufnr)
-        return { first(bufnr, "shfmt", "prettierd", "prettier"), "injected" }
+        return { first(bufnr, 'shfmt', 'prettierd', 'prettier'), 'injected' }
       end,
       vue = function(bufnr)
-        return { first(bufnr, "prettierd", "prettier"), "injected" }
+        return { first(bufnr, 'prettierd', 'prettier'), 'injected' }
       end,
       svg = function(bufnr)
-        return { first(bufnr, "prettierd", "prettier"), "injected" }
+        return { first(bufnr, 'prettierd', 'prettier'), 'injected' }
       end,
-      ["*"] = { "prettierd", "prettier" },
+      ['*'] = { 'prettierd', 'prettier' },
     },
     -- Set default options
     default_format_opts = {
-      lsp_format = "fallback",
+      lsp_format = 'fallback',
     },
     -- Set up format-on-save
     format_on_save = { timeout_ms = 500 },
     -- Customize formatters
     formatters = {
       shfmt = {
-        prepend_args = { "-i", "2" },
+        prepend_args = { '-i', '2' },
       },
     },
   },

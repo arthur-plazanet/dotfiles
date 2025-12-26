@@ -4,10 +4,11 @@ return {
   -- See `:help lualine.txt`
   opts = {
     options = {
-      icons_enabled = false,
-      -- theme = 'onedark',
+      icons_enabled = true,
+      theme = 'onedark',
       component_separators = '|',
       section_separators = '',
     },
+    tabline = { lualine_a = {}, lualine_b = { 'branch' }, lualine_c = { 'filename' }, lualine_x = {}, lualine_y = {}, lualine_z = {} },
   },
 }
