@@ -21,8 +21,13 @@ function M.config()
   local cmp = require("cmp")
   local luasnip = require("luasnip")
 
+
+  -- TODO: Not loaded
   -- Load VS Code-style snippets (including friendly-snippets)
-  require("luasnip.loaders.from_vscode").lazy_load()
+  require("luasnip.loaders.from_vscode").lazy_load({
+    paths = "~/config/nvim/lua/config/snippets/vscode",
+  })
+
 
   -- Your custom Lua snippets
   require("luasnip.loaders.from_lua").lazy_load({
@@ -53,17 +58,7 @@ function M.config()
     sources = {
       { name = "nvim_lsp" },
       { name = "luasnip" }, -- <- this is how friendly-snippets show up
-      { name = 'friendly-snippets' },
       -- add more (buffer, path, etc.) if you want
-    },
-  })
-
-  -- Example: SQL-specific completion (vim-dadbod)
-  cmp.setup.filetype("sql", {
-    sources = {
-      { name = "vim-dadbod-completion" },
-      { name = "buffer" },
-
     },
   })
 end

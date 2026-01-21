@@ -14,7 +14,7 @@ return {
           "copilot",
           "css_variables",
           "cssls",
-          "emmet_ls",
+          -- "emmet_ls",
           "eslint",
           "gh_actions_ls",
           "html",
@@ -103,9 +103,9 @@ return {
     -- })
 
     -- -- Emmet (HTML-like)
-    -- vim.lsp.config("emmet_ls", {
-    --   capabilities = capabilities,
-    -- })
+    vim.lsp.config("emmet_ls", {
+      capabilities = capabilities,
+    })
 
     -- -- Global LSP defaults that apply to *all* servers
     -- vim.lsp.config("*", {

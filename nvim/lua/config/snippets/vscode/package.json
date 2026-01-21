@@ -15,8 +15,20 @@
         "path": "./javascript.json"
       },
       {
-        "language": "Typescript",
-        "path": "./Pinia.code-snippets"
+        "language": "json",
+        "path": "./package.json"
+      },
+      {
+        "language": "html",
+        "path": "./html.json"
+      },
+      {
+        "language": "css",
+        "path": "./css.json"
+      },
+      {
+        "language": "github-action",
+        "path": "./github-action.json"
       }
     ]
   }
