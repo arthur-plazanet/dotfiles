@@ -6,6 +6,8 @@ local telescope = {
   config = function()
     -- [[ Configure Telescope ]]
     -- See `:help telescope` and `:help telescope.setup()`
+    local gfh_actions = require('telescope').extensions.git_file_history.actions
+
     require('telescope').setup {
 
       defaults = {
@@ -15,20 +17,36 @@ local telescope = {
             ['<C-d>'] = false,
           },
         },
-        file_ignore_patterns = { "^./node_modules/", 'node_modules/.*', "^./.nuxt/", '.nuxt/.*', "^./.output/",
-          '.output/.*' },
+        file_ignore_patterns = { '^./node_modules/', 'node_modules/.*', '^./.nuxt/', '.nuxt/.*', '^./.output/', '.output/.*' },
       },
       pickers = {
         find_files = {
-          theme = "dropdown",
-        }
+          theme = 'dropdown',
+        },
+      },
+      extensions = {
+        git_file_history = {
+          -- Keymaps inside the picker
+          mappings = {
+            i = {
+              ['<C-g>'] = gfh_actions.open_in_browser,
+            },
+            n = {
+              ['<C-g>'] = gfh_actions.open_in_browser,
+            },
+          },
+
+          -- The command to use for opening the browser (nil or string)
+          -- If nil, it will check if xdg-open, open, start, wslview are available, in that order.
+          browser_command = nil,
+        },
       },
     }
     -- Enable telescope fzf native, if installed
-    pcall(require('telescope').load_extension('fzf'))
-    require("telescope").load_extension "file_browser"
-    require('telescope').load_extension('luasnip')
-    local builtin = require('telescope.builtin')
+    pcall(require('telescope').load_extension 'fzf')
+    require('telescope').load_extension 'file_browser'
+    require('telescope').load_extension 'luasnip'
+    local builtin = require 'telescope.builtin'
     local nmap = require('utils').nmap
     -- See `:help telescope.builtin`
     -- nmap('<leader>?', builtin.oldfiles, '[?] Find recently opened files')
@@ -50,20 +68,20 @@ local telescope = {
     -- nmap('<leader>sd', builtin.diagnostics, '[S]earch [D]iagnostics')
   end,
   keys = function()
-    local builtin = require("telescope.builtin")
-    local wk = require("which-key")
-    wk.add({
-      { '<leader>s',  group = "telescope" },
-      { "<leader>sf", builtin.find_files,  desc = "Search Files" },
-      { "<leader>sh", builtin.help_tags,   desc = "Search Help" },
-      { "<leader>sw", builtin.grep_string, desc = "Search Current Word" },
-      { "<leader>sg", builtin.live_grep,   desc = "Search by Grep" },
-      { "<leader>sd", builtin.diagnostics, desc = "Search Diagnostics" },
-      { "<leader>sb", builtin.builtin,     desc = "Search Builtins" },
-      { "<leader>?",  builtin.oldfiles,    desc = "Search in Recently Opened Files" },
+    local builtin = require 'telescope.builtin'
+    local wk = require 'which-key'
+    wk.add {
+      { '<leader>s', group = 'telescope' },
+      { '<leader>sf', builtin.find_files, desc = 'Search Files' },
+      { '<leader>sh', builtin.help_tags, desc = 'Search Help' },
+      { '<leader>sw', builtin.grep_string, desc = 'Search Current Word' },
+      { '<leader>sg', builtin.live_grep, desc = 'Search by Grep' },
+      { '<leader>sd', builtin.diagnostics, desc = 'Search Diagnostics' },
+      { '<leader>sb', builtin.builtin, desc = 'Search Builtins' },
+      { '<leader>?', builtin.oldfiles, desc = 'Search in Recently Opened Files' },
       -- { "<leader>ss", ':Telescope luasnip<CR>', desc = "Search Snippets" },
-    })
-  end
+    }
+  end,
 }
 
 -- Telescope extensions
@@ -73,7 +91,7 @@ local telescope = {
 local telescope_symbols = {
   'nvim-telescope/telescope-symbols.nvim',
   keys = {
-    { '<leader>se', ':Telescope symbols<CR>', desc = "Search Emojis", mode = 'n' },
+    { '<leader>se', ':Telescope symbols<CR>', desc = 'Search Emojis', mode = 'n' },
   },
 }
 
@@ -81,16 +99,16 @@ local telescope_symbols = {
 local telescope_luasnip = {
   'benfowler/telescope-luasnip.nvim',
   keys = {
-    { '<leader>ss', ':Telescope luasnip<CR>', desc = "Search Snippets", mode = 'n' },
+    { '<leader>ss', ':Telescope luasnip<CR>', desc = 'Search Snippets', mode = 'n' },
   },
 }
 
 -- https://github.com/nvim-telescope/telescope-file-browser.nvim?tab=readme-ov-file
 local telescope_file_browser = {
-  "nvim-telescope/telescope-file-browser.nvim",
-  dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+  'nvim-telescope/telescope-file-browser.nvim',
+  dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
   keys = {
-    { '<leader>fb', ':Telescope file_browser<CR>', desc = "File Browser", mode = 'n' },
+    { '<leader>fb', ':Telescope file_browser<CR>', desc = 'File Browser', mode = 'n' },
   },
 }
 
@@ -115,11 +133,32 @@ local telescope_project = {
     'nvim-telescope/telescope.nvim',
   },
   keys = {
-    { '<leader>fp', ':Telescope project<CR>', desc = "Find Projects", mode = 'n' },
+    { '<leader>fp', ':Telescope project<CR>', desc = 'Find Projects', mode = 'n' },
   },
 }
 
-
+-- Telescope Git File History Extension setup
+-- https://github.com/isak102/telescope-git-file-history.nvim
+local telescope_git_file_history = {
+  'nvim-telescope/telescope.nvim',
+  dependencies = {
+    {
+      'isak102/telescope-git-file-history.nvim',
+      dependencies = {
+        'nvim-lua/plenary.nvim',
+        'tpope/vim-fugitive',
+      },
+    },
+  },
+  keys = {
+    {
+      '<leader>gh',
+      ':Telescope git_file_history<CR>',
+      desc = 'Git File History',
+      mode = 'n',
+    },
+  },
+}
 return {
   telescope,
   telescope_symbols,
@@ -127,4 +166,5 @@ return {
   telescope_file_browser,
   telescope_fzf_native,
   telescope_project,
+  telescope_git_file_history,
 }

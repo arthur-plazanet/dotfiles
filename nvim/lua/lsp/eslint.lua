@@ -68,9 +68,12 @@ return {
     'typescriptreact',
     'typescript.tsx',
     'vue',
-    'svelte',
     'astro',
     'htmlangular',
+    'markdown',
+    'mdx',
+    'yaml',
+    'yml',
   },
   workspace_required = true,
   on_attach = function(client, bufnr)
@@ -93,8 +96,7 @@ return {
     -- manager lock file.
     local root_markers = { 'package-lock.json', 'yarn.lock', 'pnpm-lock.yaml', 'bun.lockb', 'bun.lock', 'deno.lock' }
     -- Give the root markers equal priority by wrapping them in a table
-    root_markers = vim.fn.has('nvim-0.11.3') == 1 and { root_markers, { '.git' } }
-      or vim.list_extend(root_markers, { '.git' })
+    root_markers = vim.fn.has 'nvim-0.11.3' == 1 and { root_markers, { '.git' } } or vim.list_extend(root_markers, { '.git' })
     -- We fallback to the current working directory if no project root is found
     local project_root = vim.fs.root(bufnr, root_markers) or vim.fn.getcwd()
 
@@ -104,8 +106,7 @@ return {
     -- Eslint used to support package.json files as config files, but it doesn't anymore.
     -- We keep this for backward compatibility.
     local filename = vim.api.nvim_buf_get_name(bufnr)
-    local eslint_config_files_with_package_json =
-      util.insert_package_json(eslint_config_files, 'eslintConfig', filename)
+    local eslint_config_files_with_package_json = util.insert_package_json(eslint_config_files, 'eslintConfig', filename)
     local is_buffer_using_eslint = vim.fs.find(eslint_config_files_with_package_json, {
       path = filename,
       type = 'file',
@@ -170,7 +171,7 @@ return {
       -- Support flat config files
       -- They contain 'config' in the file name
       local flat_config_files = vim.tbl_filter(function(file)
-        return file:match('config')
+        return file:match 'config'
       end, eslint_config_files)
 
       for _, file in ipairs(flat_config_files) do

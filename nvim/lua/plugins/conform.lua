@@ -49,7 +49,7 @@ return {
         return { first(bufnr, 'prettierd', 'prettier'), 'injected' }
       end,
       lua = function(bufnr)
-        return { first(bufnr, 'stylua', 'prettierd', 'prettier'), 'injected' }
+        return { first(bufnr, 'stylua'), 'injected' }
       end,
       css = function(bufnr)
         return { first(bufnr, 'prettierd', 'prettier'), 'injected' }
@@ -58,10 +58,13 @@ return {
         return { first(bufnr, 'prettierd', 'prettier'), 'injected' }
       end,
       yaml = function(bufnr)
-        return { first(bufnr, 'prettierd', 'prettier'), 'injected' }
+        return { first(bufnr, 'yamlfmt') }
+      end,
+      yml = function(bufnr)
+        return { first(bufnr, 'yamlfmt') }
       end,
       sh = function(bufnr)
-        return { first(bufnr, 'shfmt', 'prettierd', 'prettier'), 'injected' }
+        return { first(bufnr, 'shfmt') }
       end,
       vue = function(bufnr)
         return { first(bufnr, 'prettierd', 'prettier'), 'injected' }
@@ -69,7 +72,8 @@ return {
       svg = function(bufnr)
         return { first(bufnr, 'prettierd', 'prettier'), 'injected' }
       end,
-      ['*'] = { 'prettierd', 'prettier' },
+
+      -- ['*'] = { 'prettierd', 'prettier' },
     },
     -- Set default options
     default_format_opts = {

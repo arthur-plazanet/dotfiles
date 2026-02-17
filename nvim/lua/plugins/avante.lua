@@ -4,14 +4,14 @@
 local config = {
   ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
   ---@type Provider
-  provider = "openai", -- The provider used in Aider mode or in the planning phase of Cursor Planning Mode
+  provider = "claude", -- The provider used in Aider mode or in the planning phase of Cursor Planning Mode
   ---@alias Mode "agentic" | "legacy"
   ---@type Mode
   mode = "agentic", -- The default mode for interaction. "agentic" uses tools to automatically generate code, "legacy" uses the old planning method to generate code.
   -- WARNING: Since auto-suggestions are a high-frequency operation and therefore expensive,
   -- currently designating it as `copilot` provider is dangerous because: https://github.com/yetone/avante.nvim/issues/1048
   -- Of course, you can reduce the request frequency by increasing `suggestion.debounce`.
-  auto_suggestions_provider = "openai",
+  auto_suggestions_provider = "claude",
   providers = {
     claude = {
       endpoint = "https://api.anthropic.com",
@@ -42,7 +42,7 @@ local config = {
   ---Note: This is an experimental feature and may not work as expected.
   dual_boost = {
     enabled = false,
-    first_provider = "openai",
+    first_provider = "claude",
     second_provider = "claude",
     prompt =
     "Based on the two reference outputs below, generate a response that incorporates elements from both but reflects your own judgment and unique perspective. Do not provide any explanation, just give the response directly. Reference Output 1: [{{provider1_output}}], Reference Output 2: [{{provider2_output}}]",
