@@ -20,13 +20,13 @@ return {
       end,
       desc = 'Buffers',
     },
-    {
-      '<leader>/',
-      function()
-        Snacks.picker.grep()
-      end,
-      desc = 'Grep',
-    },
+    -- {
+    --   '<leader>/',
+    --   function()
+    --     Snacks.picker.grep()
+    --   end,
+    --   desc = 'Grep',
+    -- },
     {
       '<leader>:',
       function()
@@ -34,20 +34,20 @@ return {
       end,
       desc = 'Command History',
     },
-    {
-      '<leader>n',
-      function()
-        Snacks.picker.notifications()
-      end,
-      desc = 'Notification History',
-    },
-    {
-      '<leader>e',
-      function()
-        Snacks.explorer()
-      end,
-      desc = 'File Explorer',
-    },
+    -- {
+    --   '<leader>n',
+    --   function()
+    --     Snacks.picker.notifications()
+    --   end,
+    --   desc = 'Notification History',
+    -- },
+    -- {
+    --   '<leader>e',
+    --   function()
+    --     Snacks.explorer()
+    --   end,
+    --   desc = 'File Explorer',
+    -- },
     -- find
     {
       '<leader>fb',
@@ -56,13 +56,13 @@ return {
       end,
       desc = 'Buffers',
     },
-    {
-      '<leader>fc',
-      function()
-        Snacks.picker.files { cwd = vim.fn.stdpath 'config' }
-      end,
-      desc = 'Find Config File',
-    },
+    -- {
+    --   '<leader>fc',
+    --   function()
+    --     Snacks.picker.files { cwd = vim.fn.stdpath 'config' }
+    --   end,
+    --   desc = 'Find Config File',
+    -- },
     {
       '<leader>ff',
       function()
@@ -185,13 +185,13 @@ return {
       end,
       desc = 'Grep Open Buffers',
     },
-    {
-      '<leader>sg',
-      function()
-        Snacks.picker.grep()
-      end,
-      desc = 'Grep',
-    },
+    -- {
+    --   '<leader>sg',
+    --   function()
+    --     Snacks.picker.grep()
+    --   end,
+    --   desc = 'Grep',
+    -- },
     {
       '<leader>sw',
       function()
