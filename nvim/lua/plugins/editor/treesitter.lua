@@ -3,11 +3,24 @@ return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
   opts = function()
-    local configs = require("nvim-treesitter.configs")
+    local configs = require 'nvim-treesitter.configs'
     configs.setup {
       -- Add languages to be installed here that you want installed for treesitter
-      ensure_installed = { 'lua', 'vimdoc', 'vim', 'javascript', 'html', 'css', 'json', 'yaml', 'dockerfile',
-        'scss', 'vue', 'markdown', 'markdown_inline' },
+      ensure_installed = {
+        'lua',
+        'vimdoc',
+        'vim',
+        'javascript',
+        'typescript',
+        'html',
+        'css',
+        'json',
+        'yaml',
+        'scss',
+        'vue',
+        'markdown',
+        'markdown_inline',
+      },
       -- Install parsers synchronously (only applied to `ensure_installed`)
       sync_install = false,
       -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
@@ -27,5 +40,5 @@ return {
         },
       },
     }
-  end
+  end,
 }
